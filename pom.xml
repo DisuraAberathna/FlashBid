@@ -8,7 +8,7 @@
     <artifactId>FlashBid</artifactId>
     <version>1.0</version>
     <name>flash-bid</name>
-    <packaging>ear</packaging>
+    <packaging>pom</packaging>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
