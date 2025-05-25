@@ -10,6 +10,8 @@
     </parent>
 
     <artifactId>FlashBid-ejb</artifactId>
+    <packaging>ejb</packaging>
+    <name>flash-bid-ejb</name>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -17,4 +19,22 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>10.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.disuraaberathna</groupId>
+            <artifactId>FlashBid-core</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.name}</finalName>
+    </build>
 </project>
