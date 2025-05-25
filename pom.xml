@@ -7,7 +7,6 @@
     <groupId>com.disuraaberathna</groupId>
     <artifactId>FlashBid</artifactId>
     <version>1.0</version>
-    <name>flash-bid</name>
     <packaging>pom</packaging>
 
     <properties>
@@ -15,8 +14,4 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <build>
-        <finalName>${project.name}</finalName>
-    </build>
 </project>
