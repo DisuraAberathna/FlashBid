@@ -1,6 +1,8 @@
 package com.disuraaberathna.flashbid.core.dto;
 
-public class ResponseDto {
+import java.io.Serializable;
+
+public class ResponseDto implements Serializable {
     private boolean success;
     private String message;
 
