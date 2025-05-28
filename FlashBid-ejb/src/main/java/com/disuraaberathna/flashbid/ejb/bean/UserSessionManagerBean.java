@@ -22,7 +22,11 @@ public class UserSessionManagerBean implements UserSessionManager {
 
     @Override
     public String login(String username, String password) {
-        return "";
+        Gson gson = new Gson();
+
+        ResponseDto responseDto = userValidation.validateForLogin(username, password);
+
+        return gson.toJson(responseDto);
     }
 
     @Override
@@ -34,13 +38,9 @@ public class UserSessionManagerBean implements UserSessionManager {
             String id = UUID.randomUUID().toString();
 
             userDataStore.addUser(new User(id, username, password));
+            responseDto.setMessage(id);
         }
 
         return gson.toJson(responseDto);
-    }
-
-    @Override
-    public void logout(String userId) {
-
     }
 }

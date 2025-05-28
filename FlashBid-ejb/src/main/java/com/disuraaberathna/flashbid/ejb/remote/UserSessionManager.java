@@ -6,5 +6,4 @@ import jakarta.ejb.Remote;
 public interface UserSessionManager {
     String login(String username, String password);
     String register(String username, String password);
-    void logout(String userId);
 }
