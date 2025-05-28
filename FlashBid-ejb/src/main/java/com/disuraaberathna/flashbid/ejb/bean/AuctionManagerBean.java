@@ -41,8 +41,7 @@ public class AuctionManagerBean implements AuctionManager {
         if (responseDto.isSuccess()) {
             String id = UUID.randomUUID().toString();
 
-            AuctionItem item = new AuctionItem(id, title, startBid, startBid, null, startDate, endDate, false);
-            auctionDataStore.addAuctionItem(item);
+            auctionDataStore.addAuctionItem(new AuctionItem(id, title, startBid, startBid, null, startDate, endDate, false));
         }
 
         return gson.toJson(responseDto);
