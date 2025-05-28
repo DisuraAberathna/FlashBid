@@ -38,4 +38,32 @@ public class UserValidation {
         responseDto.setSuccess(true);
         return responseDto;
     }
+
+    public ResponseDto validateForLogin(String username, String password) {
+        ResponseDto responseDto = new ResponseDto();
+
+        if (username == null || username.isEmpty()) {
+            responseDto.setMessage("Enter your username");
+            return responseDto;
+        }
+
+        if (password == null || password.isEmpty()) {
+            responseDto.setMessage("Enter your password");
+            return responseDto;
+        }
+
+        for (Map.Entry<String, User> entry : userDataStore.getAllUsers().entrySet()) {
+            User user = entry.getValue();
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                responseDto.setSuccess(true);
+                responseDto.setMessage(user.getId());
+            } else {
+                responseDto.setMessage("Cannot find user, please register first");
+            }
+            return responseDto;
+        }
+
+        responseDto.setMessage("Please try again later.");
+        return responseDto;
+    }
 }
