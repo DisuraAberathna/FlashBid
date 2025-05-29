@@ -15,7 +15,9 @@
     <h1>Welcome to FlashBid</h1>
 </header>
 <nav>
-        <h1><a href="auction.jsp">View Live Auctions</a></h1>
+        <h1><a href="home.jsp">View Live Auctions</a></h1>
+        <h1><a href="login.jsp">Login</a></h1>
+        <h1><a href="register.jsp">Register</a></h1>
 </nav>
 </body>
 </html>
