@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/login")
-public class login extends HttpServlet {
+public class Login extends HttpServlet {
 
     @EJB
     private UserSessionManager userSessionManager;
