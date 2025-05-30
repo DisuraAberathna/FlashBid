@@ -23,7 +23,7 @@ public class BidValidation {
             return responseDto;
         }
 
-        if (item.isCompleted() || item.getEndTime().before(new Date())) {
+        if (item.isCompleted() || item.getEndTime() != null && item.getEndTime().before(new Date())) {
             responseDto.setMessage("Auction is already completed");
             return responseDto;
         }
