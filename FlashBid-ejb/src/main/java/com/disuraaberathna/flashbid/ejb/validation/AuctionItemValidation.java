@@ -1,14 +1,11 @@
 package com.disuraaberathna.flashbid.ejb.validation;
 
 import com.disuraaberathna.flashbid.core.dto.ResponseDto;
-import com.disuraaberathna.flashbid.core.model.AuctionItem;
 import jakarta.ejb.Stateless;
-
-import java.util.Date;
 
 @Stateless
 public class AuctionItemValidation {
-    public ResponseDto validateAuctionItem(String title, String startBid, Date startDate, Date endDate) {
+    public ResponseDto validateAuctionItem(String title, String startBid) {
         ResponseDto responseDto = new ResponseDto();
 
         if (title == null || title.isEmpty()) {
@@ -29,16 +26,6 @@ public class AuctionItemValidation {
             }
         } catch (NumberFormatException e) {
             responseDto.setMessage("Starting bid must be a valid number.");
-            return responseDto;
-        }
-
-        if (startDate == null || endDate == null) {
-            responseDto.setMessage("Start date and end date must be provided.");
-            return responseDto;
-        }
-
-        if (startDate.after(endDate)) {
-            responseDto.setMessage("The start date must be before the end date.");
             return responseDto;
         }
 
