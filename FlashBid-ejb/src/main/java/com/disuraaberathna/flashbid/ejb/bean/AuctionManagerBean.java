@@ -33,15 +33,15 @@ public class AuctionManagerBean implements AuctionManager {
     }
 
     @Override
-    public String addAuctionItem(String title, String startBid, Date startDate, Date endDate) {
+    public String addAuctionItem(String title, String startBid) {
         Gson gson = new Gson();
 
-        ResponseDto responseDto = auctionItemValidation.validateAuctionItem(title, startBid, startDate, endDate);
+        ResponseDto responseDto = auctionItemValidation.validateAuctionItem(title, startBid);
 
         if (responseDto.isSuccess()) {
             String id = UUID.randomUUID().toString();
 
-            auctionDataStore.addAuctionItem(new AuctionItem(id, title, startBid, startBid, null, startDate, endDate, false));
+            auctionDataStore.addAuctionItem(new AuctionItem(id, title, startBid, startBid, null, new Date(), null, false));
         }
 
         return gson.toJson(responseDto);
@@ -53,6 +53,7 @@ public class AuctionManagerBean implements AuctionManager {
         ResponseDto responseDto = new ResponseDto();
 
         AuctionItem auctionItem = auctionDataStore.getAuctionItem(auctionId);
+        auctionItem.setEndTime(new Date());
         auctionItem.setCompleted(true);
 
         auctionDataStore.updateAuctionItem(auctionId, auctionItem);
