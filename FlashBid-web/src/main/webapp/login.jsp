@@ -66,6 +66,8 @@
             } else {
                 alert(data.message);
             }
+        } else {
+            alert("Something went wrong");
         }
     }
 </script>
