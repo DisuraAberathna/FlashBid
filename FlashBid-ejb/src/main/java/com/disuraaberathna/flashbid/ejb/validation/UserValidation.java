@@ -52,6 +52,11 @@ public class UserValidation {
             return responseDto;
         }
 
+        if (userDataStore.getAllUsers().isEmpty()) {
+            responseDto.setMessage("Cannot find user, please register first");
+            return responseDto;
+        }
+
         for (Map.Entry<String, User> entry : userDataStore.getAllUsers().entrySet()) {
             User user = entry.getValue();
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
