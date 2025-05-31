@@ -74,8 +74,8 @@
                     if (!auctionItem.completed) {
                         auctionItemClone.querySelector("#joinAuctionBtn").innerHTML = "Join Auction";
                         auctionItemClone.querySelector("#joinAuctionBtn").addEventListener("click", (e) => {
-                            joinAuction(auctionItem.id)
                             e.preventDefault();
+                            joinAuction(auctionItem.id);
                         });
                     }
 
