@@ -29,7 +29,7 @@
                     <label for="bid">Starting Bid</label>
                     <br/>
                     <label>LKR &nbsp;</label>
-                    <input type="number" id="bid" placeholder="Enter Starting Bid" min={1} step={0.01}/>
+                    <input type="number" id="bid" placeholder="Enter Starting Bid" min="1" step="0.01"/>
                 </div>
                 <br/>
                 <div>
