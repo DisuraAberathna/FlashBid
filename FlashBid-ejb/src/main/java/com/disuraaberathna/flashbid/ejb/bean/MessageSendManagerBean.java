@@ -34,6 +34,7 @@ public class MessageSendManagerBean implements MessageSendManager {
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("id", auctionItemId);
             jsonObject.addProperty("currentBid", auctionItem.getCurrentBid());
+            jsonObject.addProperty("user", auctionItem.getCurrentUser().getUsername());
 
             Message message = session.createTextMessage(new Gson().toJson(jsonObject));
             producer.send(message);
