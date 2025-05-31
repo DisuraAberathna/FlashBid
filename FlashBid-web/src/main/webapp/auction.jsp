@@ -113,6 +113,7 @@
                         minimumFractionDigits: 2,
                     }).format(currentBid);
                     document.getElementById("bid").min = currentBid;
+                    document.getElementById("currentUser").innerHTML = message.user;
                 } else {
                     alert("error : " + message.id);
                 }
