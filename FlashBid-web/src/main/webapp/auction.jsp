@@ -40,11 +40,11 @@
             <div>
                 <label for="bid">Add Your Bid : </label>
                 <br/>
-                <input type="number" id="bid" name="bid" min="1"/>
+                <input type="number" id="bid" name="bid" min="1" step="0.1"/>
             </div>
             <br/>
             <div>
-                <button id="bitBtn">Bid</button>
+                <button id="bidBtn">Bid</button>
             </div>
             <br/>
             <div>
@@ -60,6 +60,7 @@
 
         if (parameters.has("id")) {
             const auctionItemId = parameters.get("id");
+            let currentBid = 0;
 
             const response = await axios.post("get-auction-item", {
                 id: auctionItemId,
@@ -79,13 +80,14 @@
                     document.getElementById("startBid").innerText = "LKR " + new Intl.NumberFormat("en-US", {
                         minimumFractionDigits: 2,
                     }).format(data.startBid);
+                    currentBid = parseFloat(data.currentBid);
                     document.getElementById("currentBid").innerHTML = "LKR " + new Intl.NumberFormat("en-US", {
                         minimumFractionDigits: 2,
-                    }).format(data.currentBid);
+                    }).format(currentBid);
                     document.getElementById("currentUser").innerHTML = data.user ? data.user.username : "";
                     document.getElementById("startedAt").innerHTML = data.startTime;
                     document.getElementById("status").innerHTML = data.completed ? "Auction Ended" : "On Going";
-                    document.getElementById("bid").min = parseInt(data.currentBid);
+                    document.getElementById("bid").min = currentBid;
                 } else {
                     window.location.href = "home.jsp";
                 }
@@ -104,11 +106,13 @@
 
                 const message = JSON.parse(e.data);
 
-                if(auctionItemId === message.id) {
+                if (auctionItemId === message.id) {
+                    currentBid = parseFloat(message.currentBid);
+
                     document.getElementById("currentBid").innerHTML = "LKR " + new Intl.NumberFormat("en-US", {
                         minimumFractionDigits: 2,
-                    }).format(message.currentBid);
-                    document.getElementById("bid").min = parseInt(message.currentBid);
+                    }).format(currentBid);
+                    document.getElementById("bid").min = currentBid;
                 } else {
                     alert("error : " + message.id);
                 }
@@ -121,6 +125,44 @@
             webSocket.onerror = (e) => {
                 console.log("Auction error", e);
             };
+
+            document.getElementById("bidBtn").addEventListener("click", async () => {
+                const bidInput = document.getElementById("bid");
+                const messageElement = document.getElementById("messages");
+                const bidAmount = parseFloat(bidInput.value);
+
+                if (bidAmount > currentBid) {
+                    const response = await axios.post("place-bid", {
+                        id: auctionItemId,
+                        bid: bidAmount,
+                    }, {
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    });
+
+                    // console.log(response);
+
+                    if (response.status === 200) {
+                        const data = response.data;
+
+                        if (data.success) {
+                            messageElement.style.color = "green";
+                            messageElement.innerHTML = "Your bid of LKR " + new Intl.NumberFormat("en-US", {
+                                minimumFractionDigits: 2,
+                            }).format(bidAmount) + " has been placed successfully!";
+                        } else {
+                            messageElement.style.color = "red";
+                            messageElement.textContent = data.message || "Bid placing failed.";
+                        }
+                        bidInput.value = "";
+                    } else {
+                        alert("Something went wrong");
+                    }
+                } else {
+                    alert("Your bid value need to be grater than current bit.");
+                }
+            });
         } else {
             window.location.href = "home.jsp";
         }
