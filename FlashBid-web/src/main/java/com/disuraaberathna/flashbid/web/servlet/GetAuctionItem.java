@@ -16,7 +16,6 @@ import java.io.IOException;
 @WebServlet("/get-auction-item")
 public class GetAuctionItem extends HttpServlet {
 
-
     @EJB
     private AuctionManager auctionManager;
 
