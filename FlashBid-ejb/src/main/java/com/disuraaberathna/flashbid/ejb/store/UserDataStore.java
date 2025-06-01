@@ -4,12 +4,14 @@ import com.disuraaberathna.flashbid.core.model.User;
 import jakarta.ejb.Lock;
 import jakarta.ejb.LockType;
 import jakarta.ejb.Singleton;
+import jakarta.ejb.Startup;
 
 import java.io.Serializable;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Singleton
+@Startup
 public class UserDataStore implements Serializable {
     private final Map<String, User> userMap = new ConcurrentHashMap<>();
 
