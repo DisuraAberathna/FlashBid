@@ -9,8 +9,8 @@ import jakarta.jms.MessageListener;
 
 @MessageDriven(activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Topic"),
-        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "activeMqTopic"),
-        @ActivationConfigProperty(propertyName = "destination", propertyValue = "activeMqTopic"),
+        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "flashBidTopic"),
+        @ActivationConfigProperty(propertyName = "destination", propertyValue = "flashBidTopic"),
         @ActivationConfigProperty(propertyName = "resourceAdapter", propertyValue = "activemq-rar-6.1.6"),
 })
 public class MessageReceiver implements MessageListener {

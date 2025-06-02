@@ -25,7 +25,7 @@ public class MessageSendManagerBean implements MessageSendManager {
             connection.start();
 
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-            Topic topic = session.createTopic("activeMqTopic");
+            Topic topic = session.createTopic("flashBidTopic");
 
             MessageProducer producer = session.createProducer(topic);
 
