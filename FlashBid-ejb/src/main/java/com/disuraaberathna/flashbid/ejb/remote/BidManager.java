@@ -1,6 +1,5 @@
 package com.disuraaberathna.flashbid.ejb.remote;
 
-import com.disuraaberathna.flashbid.core.model.User;
 import jakarta.ejb.Remote;
 
 @Remote
