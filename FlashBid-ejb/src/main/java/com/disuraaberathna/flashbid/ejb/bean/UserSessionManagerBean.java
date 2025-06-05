@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 
+import java.util.Map;
 import java.util.UUID;
 
 @Stateless
@@ -42,5 +43,10 @@ public class UserSessionManagerBean implements UserSessionManager {
         }
 
         return gson.toJson(responseDto);
+    }
+
+    @Override
+    public Map<String, User> getAllUsers() {
+        return userDataStore.getAllUsers();
     }
 }
