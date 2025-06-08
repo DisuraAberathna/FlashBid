@@ -10,40 +10,41 @@
 <head>
     <title>FlashBid | Register</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="css/styles.css" rel="stylesheet"/>
 </head>
 <body>
-<header>
-    <h1>FlashBid Register</h1>
-</header>
-<main>
-    <div>
-        <form onsubmit="handleSubmit(event)">
-            <div>
-                <label for="username">Username</label>
-                <br/>
-                <input type="text" name="username" id="username" placeholder="Enter Your Username"/>
-            </div>
-            <br/>
-            <div>
-                <label for="password">Password</label>
-                <br/>
-                <input type="password" name="password" id="password" placeholder="Enter Your Password"/>
-            </div>
-            <br/>
-            <div>
-                <button type="submit">Register</button>
-            </div>
-            <br/>
-            <div>
-                <span>or</span>
-            </div>
-            <br/>
-            <div>
-                <a href="login.jsp">Login</a>
-            </div>
-        </form>
-    </div>
-</main>
+<div class="w-full h-screen flex justify-center items-center bg-neutral-100">
+    <form onsubmit="handleSubmit(event)"
+          class="min-w-sm lg:min-w-md bg-white drop-shadow-xl rounded-xl px-6 py-8 space-y-3">
+        <div>
+            <h2 class="font-semibold text-2xl mb-1">FlashBid Register</h2>
+            <h6>Welcome back!</h6>
+        </div>
+        <div class="flex flex-col gap-y-1">
+            <label for="username" class="font-medium">Username</label>
+            <input type="text" name="username" id="username" placeholder="Enter Your Username"
+                   class="rounded-md px-3 py-1 border-2 border-gray-300 hover:border-[#16A34A] active:border-[#16A34A] outline-none"/>
+        </div>
+        <div class="flex flex-col gap-y-1">
+            <label for="password" class="font-medium">Password</label>
+            <input type="password" name="password" id="password" placeholder="Enter Your Password"
+                   class="rounded-md px-3 py-1 border-2 border-gray-300 hover:border-[#16A34A] active:border-[#16A34A] outline-none"/>
+        </div>
+        <div class="text-center mt-6">
+            <button type="submit"
+                    class="bg-[#16A34A] text-white font-medium py-1.5 px-20 rounded-md hover:bg-[#28914e] cursor-pointer">
+                Register
+            </button>
+        </div>
+        <div class="text-center">
+            <span>or</span>
+        </div>
+        <div class="text-center">
+            <a href="login.jsp" class="text-[#16A34A] font-medium hover:text-[#28914e] cursor-pointer">Login</a>
+        </div>
+    </form>
+</div>
 <script>
     const handleSubmit = async (e) => {
         e.preventDefault();

@@ -9,15 +9,23 @@
 <html>
 <head>
     <title>FlashBid</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="css/styles.css" rel="stylesheet"/>
 </head>
 <body>
-<header>
-    <h1>Welcome to FlashBid</h1>
-</header>
-<nav>
-        <h1><a href="home.jsp">View Live Auctions</a></h1>
-        <h1><a href="login.jsp">Login</a></h1>
-        <h1><a href="register.jsp">Register</a></h1>
-</nav>
+<div class="flex items-center justify-center bg-neutral-100">
+    <div class="flex h-screen w-full lg:w-7xl flex-col items-center justify-center gap-y-14 px-28">
+        <div class="text-center">
+            <h1 class="text-3xl lg:text-5xl font-bold">Welcome to FlashBid</h1>
+        </div>
+        <div class="flex flex-col lg:flex-row gap-5 text-center">
+            <a href="home.jsp"
+               class="cursor-pointer rounded-md bg-[#16A34A] px-10 py-1.5 lg:py-2 text-lg font-medium text-white hover:bg-[#28914e]">View
+                Live Auctions</a>
+            <a href="login.jsp"
+               class="cursor-pointer rounded-md bg-[#16A34A] px-20 py-1.5 lg:py-2 text-lg font-medium text-white hover:bg-[#28914e]">Login</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>
