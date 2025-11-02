@@ -281,18 +281,12 @@ Contributions are welcome! Please follow these steps:
 
 ---
 
-## 📝 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
----
-
 ## 👨‍💻 Author
 
 **Disura Aberathna**
 
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
+- GitHub: [@DisuraAberathna](https://github.com/DisuraAberathna)
+- Email: disuraaberathna@gmail.com
 
 ---
 
@@ -302,31 +296,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 - **Tailwind CSS** team for the amazing utility-first framework
 - **Maven** for powerful build automation
 - All open-source contributors whose libraries made this project possible
-
----
-
-## 📈 Future Enhancements
-
-- [ ] Database integration (PostgreSQL/MySQL)
-- [ ] Email notifications for bid updates
-- [ ] Payment gateway integration
-- [ ] Advanced analytics dashboard
-- [ ] Mobile application (React Native/Flutter)
-- [ ] Redis caching for performance
-- [ ] Docker containerization
-- [ ] CI/CD pipeline setup
-- [ ] Comprehensive test suite
-- [ ] API documentation (OpenAPI/Swagger)
-
----
-
-## 📞 Support
-
-If you encounter any issues or have questions:
-
-1. Check the [Issues](https://github.com/yourusername/FlashBid/issues) page
-2. Create a new issue with detailed description
-3. Contact the maintainer via email
 
 ---
 
