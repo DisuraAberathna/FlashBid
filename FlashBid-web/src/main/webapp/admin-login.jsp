@@ -9,59 +9,117 @@
 <html>
 <head>
     <title>FlashBid | Admin Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="css/styles.css" rel="stylesheet"/>
 </head>
 <body>
-<div class="w-full h-screen flex justify-center items-center bg-neutral-100">
-    <form onsubmit="handleSubmit(event)" class="min-w-sm lg:min-w-md bg-white drop-shadow-xl rounded-xl px-6 py-8 space-y-3">
-        <div>
-            <h2 class="font-semibold text-2xl mb-1">FlashBid Admin Login</h2>
-            <h6>Welcome back!</h6>
+<div class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-4 py-8">
+    <div class="flex flex-col w-full max-w-md gap-y-5">
+        <!-- Logo/Branding -->
+        <div class="text-center flex flex-col items-center gap-y-2">
+            <a href="index.jsp" class="inline-block">
+                <h1 class="text-4xl font-black bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">FlashBid</h1>
+            </a>
+            <div class="items-center gap-2 px-2 py-1 bg-purple-900/30 border border-purple-700/50 rounded-full w-fit">
+                <span class="text-purple-400 text-sm font-semibold">🔐 Admin Portal</span>
+            </div>
         </div>
-        <div class="flex flex-col gap-y-1">
-            <label for="username" class="font-medium">Username</label>
-            <input type="text" name="username" id="username" placeholder="Enter Your Username"
-                   class="rounded-md px-3 py-1 border-2 border-gray-300 hover:border-[#16A34A] active:border-[#16A34A] outline-none"/>
+
+        <!-- Admin Login Form -->
+        <div class="bg-slate-800 rounded-3xl px-10 py-6 shadow-[0_20px_60px_rgba(0,0,0,0.4)] border border-purple-700/30 max-w-md w-full flex flex-col justify-center item-center gap-y-5">
+            <div>
+                <h2 class="text-3xl font-bold text-white mb-2">Admin Access</h2>
+                <p class="text-gray-400 text-sm">Restricted access - Admin only</p>
+            </div>
+
+            <form onsubmit="handleSubmit(event)" class="flex flex-col gap-y-5">
+                <div class="flex flex-col gap-y-2">
+                    <label for="username" class="text-gray-300 font-semibold text-sm">Admin Username</label>
+                    <input type="text" 
+                           name="username" 
+                           id="username" 
+                           placeholder="Enter admin username"
+                           class="bg-slate-700 border-2 border-transparent text-white py-3 px-4 rounded-lg transition-all duration-300 outline-none hover:border-purple-500/50 focus:border-blue-500 focus:shadow-[0_0_0_3px_rgba(59,130,246,0.1)] focus:bg-slate-600 placeholder:text-slate-400"
+                           required
+                           autocomplete="username"/>
+                </div>
+
+                <div class="flex flex-col gap-y-2">
+                    <label for="password" class="text-gray-300 font-semibold text-sm">Admin Password</label>
+                    <input type="password" 
+                           name="password" 
+                           id="password" 
+                           placeholder="Enter admin password"
+                           class="bg-slate-700 border-2 border-transparent text-white py-3 px-4 rounded-lg transition-all duration-300 outline-none hover:border-purple-500/50 focus:border-blue-500 focus:shadow-[0_0_0_3px_rgba(59,130,246,0.1)] focus:bg-slate-600 placeholder:text-slate-400"
+                           required
+                           autocomplete="current-password"/>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold w-full py-3 text-base rounded-lg cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(102,126,234,0.4)] shadow-[0_4px_15px_rgba(102,126,234,0.3)] active:translate-y-0">
+                        🔐 Sign In as Admin →
+                    </button>
+                </div>
+            </form>
         </div>
-        <div class="flex flex-col gap-y-1">
-            <label for="password" class="font-medium">Password</label>
-            <input type="password" name="password" id="password" placeholder="Enter Your Password"
-                   class="rounded-md px-3 py-1 border-2 border-gray-300 hover:border-[#16A34A] active:border-[#16A34A] outline-none"/>
+
+        <!-- Back to home -->
+        <div class="text-center mt-4">
+            <a href="home.jsp" class="text-gray-400 hover:text-white text-sm transition-colors">
+                ← Back to auctions
+            </a>
         </div>
-        <div class="text-center mt-6">
-            <button type="submit"
-                    class="bg-[#16A34A] text-white font-medium py-1.5 px-20 rounded-md hover:bg-[#28914e] cursor-pointer">
-                Login
-            </button>
-        </div>
-    </form>
+    </div>
 </div>
+
 <script>
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await axios.post("admin-login", {
-            username: document.getElementById("username").value,
-            password: document.getElementById("password").value
-        }, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const submitButton = e.target.querySelector('button[type="submit"]');
+        const originalText = submitButton.innerHTML;
 
-        // console.log(response);
-        if (response.status === 200) {
-            const data = response.data;
+        // Show loading state
+        submitButton.disabled = true;
+        submitButton.innerHTML = "Verifying...";
 
-            if (data.success) {
-                window.location.href = "admin-panel.jsp";
+        try {
+            const response = await axios.post("admin-login", {
+                username: username,
+                password: password
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (response.status === 200) {
+                const data = response.data;
+
+                if (data.success) {
+                    submitButton.innerHTML = "✓ Access granted";
+                    submitButton.classList.add("bg-green-500");
+                    setTimeout(() => {
+                        window.location.href = "admin-panel.jsp";
+                    }, 500);
+                } else {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalText;
+                    alert(data.message || "Access denied. Invalid credentials.");
+                }
             } else {
-                alert(data.message);
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalText;
+                alert("Something went wrong. Please try again.");
             }
-        } else {
-            alert("Something went wrong");
+        } catch (error) {
+            console.error("Admin login error:", error);
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalText;
+            alert("An error occurred. Please try again.");
         }
     }
 </script>
